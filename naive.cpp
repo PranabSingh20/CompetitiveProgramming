@@ -88,30 +88,28 @@ struct NTRU {
 
 void solve() {
     int n;
-    cin >> n ;
+    n = 5000000;
     vector<int> a(n);
-    read(a);
+    for (int i = 0; i < n; i++) {
+        a[i] = rng() % (int)1e9;
+    }
+    auto t1 = high_resolution_clock::now();
     NTRU<998244353> ntru;
     vector<int> inv = ntru.naive(a);
+    auto t2 = high_resolution_clock::now();
+    auto time = duration_cast<duration<double>>(t2 - t1);
+    cout << "Time elapsed = " << time.count() << endl;
 }
 
 int32_t main() {
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int test_cases = 1;
     // cin >> test_cases;
-    auto t1 = high_resolution_clock::now();
     for (int tt = 1; tt <= test_cases; tt++)
     {
         //cout << "Case #" << tt << ": ";
         solve();
     }
-    auto t2 = high_resolution_clock::now();
-    auto time = duration_cast<duration<double>>(t2 - t1);
-    cerr << "Time elapsed = " << time.count() << endl;
 }
 
